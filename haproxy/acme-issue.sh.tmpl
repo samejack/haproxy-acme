@@ -1,0 +1,5 @@
+#/bin/bash
+
+{{range $dir := lsdir "/services/web"}}
+/root/.acme/acme.sh --issue -d {{base $dir}} -w /var/www/localhost/htdocs
+{{end}}

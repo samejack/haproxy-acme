@@ -1,0 +1,24 @@
+version: '3.2'
+
+services:
+
+  haproxy:
+    image: haproxy-acme:latest
+    build:
+      context: ./haproxy
+    environment:
+      - STATS_SERVICE=enable
+      - STATS_ENTRYPOINT=/stats
+      - STATS_USERNAME=admin
+      - STATS_PASSWORD=admin
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2379:2379"
+    volumes:
+      - ./data/lighttpd:/var/www/localhost/htdocs
+      # - ./haproxy/haproxy.cfg.tmpl:/etc/confd/templates/haproxy.cfg.tmpl
+      # - ./haproxy/docker-entrypoint.sh:/docker-entrypoint.sh
+      # - ./haproxy/haproxy.toml:/etc/confd/conf.d/haproxy.toml
+      # - ./haproxy/supervisord.conf:/etc/supervisor/supervisord.conf
+      #- ./haproxy/haproxy.cfg:/etc/haproxy/haproxy.cfg

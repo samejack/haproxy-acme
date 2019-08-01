@@ -1,0 +1,7 @@
+[template]
+src = "acme-issue.sh.tmpl"
+dest = "/acme-issue.sh"
+keys = [
+  "/services/web"
+]
+reload_cmd = "cat /acme-issue.sh"
